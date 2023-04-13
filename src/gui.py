@@ -1,5 +1,5 @@
 __version__ = "0.4.8.2"
-app_name = "PREGUNTO A MI PDF"
+app_name = "PREGAvanzadoPDF"
 
 
 # BOILERPLATE
@@ -60,7 +60,7 @@ def ui_spacer(n=2, line=False, next_n=0):
 
 def ui_info():
 	st.markdown(f"""
-	# Pregunto a mi PDF
+	# Pregunte a PDF
 	version {__version__}
 	
 	Sistema de preguntas y respuestas construido sobre GPT3.
@@ -297,7 +297,7 @@ def output_add(q,a):
 with st.sidebar:
 	ui_info()
 	ui_spacer(2)
-	with st.expander('advanced'):
+	with st.expander('Avanzado'):
 		ui_show_debug()
 		b_clear()
 		ui_model()
