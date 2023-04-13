@@ -1,43 +1,43 @@
-# INFO: some prompts are still in model.py
+# INFORMACIÓN: algunas indicaciones todavía están en model.py
 
-# TODO: Ignore OCR problems in the text below.
+# TAREAS: Ignore los problemas de OCR en el texto a continuación.
 
-TASK = {
-	'v6': (
-			" Contesta con sinceridad a la pregunta basándote en el texto que aparece a continuación. "
-			" Incluya la cita textual y un comentario sobre dónde encontrarla en el texto (número de página). "
-			#Después de la cita, escriba una explicación paso a paso en un nuevo párrafo. "
-			"Después de la cita, escriba una explicación paso a paso. "
-			"Utilice viñetas. "
-			#" "Después intenta reformular la pregunta original para que dé mejores resultados. "
+TAREA = {
+	«v6»: (
+			"Responda la pregunta con sinceridad basada en el texto a continuación. "
+			"Incluye cita literal y un comentario donde encontrarlo en el texto (número de página)".
+			#"Después de la cita, escriba una explicación paso a paso en un nuevo párrafo. "
+			"Después de la cita escribe una explicación paso a paso. "
+			"Usa viñetas. "
+			#"Después de eso, intente reformular la pregunta original para que pueda dar mejores resultados. " 
 		),
-	'v5': (
-			" Contesta con sinceridad a la pregunta basándote en el texto que aparece a continuación. "
-			" Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página). "
-			"Utilice elipsis en la cita para omitir partes irrelevantes de la misma. "
-			"Después de la cita, escribe (en un nuevo párrafo) una explicación paso a paso para asegurarte de que la respuesta es correcta.
-			" (utilice viñetas en líneas separadas)" #, ajuste el lenguaje para un lector joven). "
-			"Después de la explicación comprueba si la Respuesta es coherente con el Contexto y no requiere conocimientos externos. "
-			"En una nueva línea escriba 'AUTOCOMPROBACIÓN CORRECTA' si la comprobación ha sido correcta y 'AUTOCOMPROBACIÓN FALLIDA' si ha fallado. "
+	«v5»: (
+			"Responda la pregunta con sinceridad basada en el texto a continuación. "
+			"Incluya al menos una cita literal (marcada entre comillas) y un comentario donde encontrarla en el texto (es decir, el nombre de la sección y el número de página). "
+			"Use puntos suspensivos en la cita para omitir partes irrelevantes de la cita. "
+			"Después de la cita escriba (en el nuevo párrafo) una explicación paso a paso para asegurarse de que tenemos la respuesta correcta"
+			"(use viñetas en líneas separadas)" #, ajuste el lenguaje para un lector joven). "
+			"Después de la explicación, verifique si la respuesta es consistente con el contexto y no requiere conocimiento externo".
+			"En una nueva línea, escriba 'AUTOCOMPROBACIÓN OK' si la comprobación se realizó correctamente y 'AUTOCOMPROBACIÓN FALLIDA' si falló. " 
 		),
 	'v4':
-		" Responde a la pregunta con la verdad basándote en el texto que aparece a continuación. " \
-		"Incluya cita textual y un comentario de dónde encontrarla en el texto (es decir, nombre de la sección y número de página). " \
-		"Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven",
-	"v3": "Responda con sinceridad a la pregunta basándose en el texto siguiente. Incluye la cita textual y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página).",
-	v2': 'Responda a la pregunta basándose en el contexto. Las respuestas deben ser elaboradas y basarse únicamente en el contexto",
-	v1': 'Responde a la pregunta basándote en el contexto',
+		"Responda la pregunta con sinceridad basada en el texto a continuación. " \
+		"Incluya una cita literal y un comentario donde encontrarlo en el texto (es decir, el nombre de la sección y el número de página). " \
+		"Después de la cita, escriba una explicación (en el nuevo párrafo) para un lector joven.",
+	'v3': 'Responda a la pregunta con sinceridad basándose en el texto a continuación. Incluya una cita literal y un comentario donde encontrarla en el texto (es decir, el nombre de la sección y el número de página).».
+	'v2': 'Responder a la pregunta basada en el contexto. Las respuestas deben ser elaboradas y basarse únicamente en el contexto.».
+	'v1': 'Responder a la pregunta basada en el contexto.',
 	# 'v5':
-		# "Generar una respuesta completa e informativa para una pregunta dada basándose únicamente en los fragmentos de documento proporcionados. " \
-		# "Debes utilizar únicamente la información de los fragmentos proporcionados. Utilice un tono imparcial y periodístico. Combine los fragmentos en una respuesta coherente. " \
-		# "No repita texto. Cite los fragmentos utilizando la notación [${number}]. Cite sólo los fragmentos más relevantes que respondan con precisión a la pregunta. " \
-		# "Si distintos fragmentos se refieren a distintas entidades con el mismo nombre, escriba una respuesta distinta para cada entidad",
+		# "Generar una respuesta completa e informativa para una pregunta dada basada únicamente en los fragmentos de documentos proporcionados. " \
+		# "Solo debe usar información de los fragmentos proporcionados. Utiliza un tono imparcial y periodístico. Combina fragmentos en una respuesta coherente. " \
+		# "No repetir texto. Citar fragmentos usando la notación [${number}]. Solo cite los fragmentos más relevantes que respondan a la pregunta con precisión. " \
+		# "Si diferentes fragmentos se refieren a diferentes entidades con el mismo nombre, escriba una respuesta separada para cada entidad.",
 }
 
-HYDE = "Escribe un ejemplo de respuesta a la siguiente pregunta. No escriba una respuesta genérica, asuma todo lo que no se sabe."
+HYDE = "Escribe una respuesta de ejemplo a la siguiente pregunta. No escribas una respuesta genérica, solo asume todo lo que no se sabe".
 
 # TODO
-SUMMARY = {
-	'v2':'Describa el documento del que se ha extraído el fragmento. Omita cualquier detalle.',
-	'v1':'Describa el documento del que se extrae el fragmento. No describa el fragmento, céntrese en averiguar de qué tipo de documento se trata.',
+RESUMEN = {
+	'v2':'Describe el documento del que se extrae el fragmento. Omita cualquier detalle.».
+	'v1':'Describe el documento del que se extrae el fragmento. No describa el fragmento, concéntrese en averiguar qué tipo de documento es.',
 }
