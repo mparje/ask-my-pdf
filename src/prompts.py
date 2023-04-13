@@ -15,7 +15,7 @@ TAREA = {
 			"Responde a la pregunta con la verdad basándote en el texto que aparece a continuación. "
 			" Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, nombre de la sección y número de página). "
 			"Utilice elipsis en la cita para omitir partes irrelevantes de la misma. "
-			"Después de la cita, escribe (en un nuevo párrafo) una explicación paso a paso para asegurarte de que la respuesta es correcta.
+			"Después de la cita, escribe (en un nuevo párrafo) una explicación paso a paso para asegurarte de que la respuesta es correcta."
 			" (utilice viñetas en líneas separadas)" #, ajuste el lenguaje para un lector joven). "
 			"Después de la explicación comprueba si la Respuesta es coherente con el Contexto y no requiere conocimientos externos. "
 			"En una nueva línea escriba 'AUTOCOMPROBACIÓN CORRECTA' si la comprobación ha sido correcta y 'AUTOCOMPROBACIÓN FALLIDA' si ha fallado. " 
