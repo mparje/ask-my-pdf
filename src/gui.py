@@ -60,7 +60,7 @@ def ui_spacer(n=2, line=False, next_n=0):
 
 def ui_info():
 	st.markdown(f"""
-	# Ask my PDF
+	# Pregunto a mi PDF
 	version {__version__}
 	
 	Sistema de preguntas y respuestas construido sobre GPT3.
