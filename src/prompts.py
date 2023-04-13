@@ -25,7 +25,7 @@ TAREA = {
 		"Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, nombre de la sección y número de página). " \
 		"Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven",
 	'v3': "Responda con sinceridad a la pregunta basándose en el texto siguiente. Incluye la cita textual y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página).",
-	'v2': 'Responda a la pregunta basándose en el contexto. Las respuestas deben ser elaboradas y basarse únicamente en el contexto",
+	'v2': 'Responda a la pregunta basándose en el contexto. Las respuestas deben ser elaboradas y basarse únicamente en el contexto',
 	'v1': 'Responde a la pregunta basándote en el contexto',
 	# 'v5':
 		# "Generar una respuesta completa e informativa para una pregunta dada basándose únicamente en los fragmentos de documento proporcionados. " \
