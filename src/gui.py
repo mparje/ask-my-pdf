@@ -66,7 +66,7 @@ def ui_info():
 	Sistema de preguntas y respuestas construido sobre GPT3.
 	""")
 	ui_spacer(1)
-	st.write("JHecho por [Maciej Obarski](https://www.linkedin.com/in/mobarski/). Adaptado por Moris Polanco.", unsafe_allow_html=True)
+	st.write("Hecho por [Maciej Obarski](https://www.linkedin.com/in/mobarski/). Adaptado por Moris Polanco.", unsafe_allow_html=True)
 	ui_spacer(1)
 	
 def ui_api_key():
@@ -84,7 +84,7 @@ def ui_api_key():
 		with t2:
 			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 	else:
-		st.write('## 1. Enter your OpenAI API key')
+		st.write('## 1. Ingrese su OpenAI API key')
 		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
@@ -111,7 +111,7 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 2. ba o seleccione su PDF')
+	st.write('## 2. Suba o seleccione su PDF')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
 	t1,t2 = st.tabs(['SUBA','SELECCIONE'])
 	with t1:
