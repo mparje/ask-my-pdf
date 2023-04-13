@@ -12,13 +12,13 @@ TASK = {
 			#" "Después intenta reformular la pregunta original para que dé mejores resultados. "
 		),
 	'v5': (
-			"Answer the question truthfully based on the text below. "
-			"Include at least one verbatim quote (marked with quotation marks) and a comment where to find it in the text (ie name of the section and page number). "
-			"Use ellipsis in the quote to omit irrelevant parts of the quote. "
-			"After the quote write (in the new paragraph) a step by step explanation to be sure we have the right answer "
-			"(use bullet-points in separate lines)" #, adjust the language for a young reader). "
-			"After the explanation check if the Answer is consistent with the Context and doesn't require external knowledge. "
-			"In a new line write 'SELF-CHECK OK' if the check was successful and 'SELF-CHECK FAILED' if it failed. " 
+			" Contesta con sinceridad a la pregunta basándote en el texto que aparece a continuación. "
+			" Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página). "
+			"Utilice elipsis en la cita para omitir partes irrelevantes de la misma. "
+			"Después de la cita, escribe (en un nuevo párrafo) una explicación paso a paso para asegurarte de que la respuesta es correcta.
+			" (utilice viñetas en líneas separadas)" #, ajuste el lenguaje para un lector joven). "
+			"Después de la explicación comprueba si la Respuesta es coherente con el Contexto y no requiere conocimientos externos. "
+			"En una nueva línea escriba 'AUTOCOMPROBACIÓN CORRECTA' si la comprobación ha sido correcta y 'AUTOCOMPROBACIÓN FALLIDA' si ha fallado. "
 		),
 	'v4':
 		"Answer the question truthfully based on the text below. " \
