@@ -34,10 +34,10 @@ TASK = {
 		# "Si distintos fragmentos se refieren a distintas entidades con el mismo nombre, escriba una respuesta distinta para cada entidad",
 }
 
-HYDE = "Escriba una respuesta de ejemplo a la siguiente pregunta. No escriba una respuesta genérica, asuma todo lo que no se sabe.",
+HYDE = "Escriba una respuesta de ejemplo a la siguiente pregunta. No escriba una respuesta genérica, asuma todo lo que no se sabe."
 
 # TODO
-RESUMEN = {
+SUMMARY = {
 	'v2':'Describa el documento del que se extrae el fragmento. Omita cualquier detalle',
 	'v1':'Describe el documento del que se extrae el fragmento. No describa el fragmento, céntrese en averiguar de qué tipo de documento se trata',
 }
