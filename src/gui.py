@@ -84,7 +84,7 @@ def ui_api_key():
 		with t2:
 			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 	else:
-		st.write('## 1. Ingrese su OpenAI API key')
+		st.write('## 1. Ingrese su clave API de OpenAI')
 		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
