@@ -21,17 +21,17 @@ TASK = {
 			"En una nueva línea escriba 'AUTOCOMPROBACIÓN CORRECTA' si la comprobación ha sido correcta y 'AUTOCOMPROBACIÓN FALLIDA' si ha fallado. "
 		),
 	'v4':
-		"Answer the question truthfully based on the text below. " \
-		"Include verbatim quote and a comment where to find it in the text (ie name of the section and page number). " \
-		"After the quote write an explanation (in the new paragraph) for a young reader.",
-	'v3': 'Answer the question truthfully based on the text below. Include verbatim quote and a comment where to find it in the text (ie name of the section and page number).',
-	'v2': 'Answer question based on context. The answers sould be elaborate and based only on the context.',
-	'v1': 'Answer question based on context.',
+		" Responde a la pregunta con la verdad basándote en el texto que aparece a continuación. " \
+		"Incluya cita textual y un comentario de dónde encontrarla en el texto (es decir, nombre de la sección y número de página). " \
+		"Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven",
+	"v3": "Responda con sinceridad a la pregunta basándose en el texto siguiente. Incluye la cita textual y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página).",
+	v2': 'Responda a la pregunta basándose en el contexto. Las respuestas deben ser elaboradas y basarse únicamente en el contexto",
+	v1': 'Responde a la pregunta basándote en el contexto',
 	# 'v5':
-		# "Generate a comprehensive and informative answer for a given question solely based on the provided document fragments. " \
-		# "You must only use information from the provided fragments. Use an unbiased and journalistic tone. Combine fragments together into coherent answer. " \
-		# "Do not repeat text. Cite fragments using [${number}] notation. Only cite the most relevant fragments that answer the question accurately. " \
-		# "If different fragments refer to different entities with the same name, write separate answer for each entity.",
+		# "Generar una respuesta completa e informativa para una pregunta dada basándose únicamente en los fragmentos de documento proporcionados. " \
+		# "Debes utilizar únicamente la información de los fragmentos proporcionados. Utilice un tono imparcial y periodístico. Combine los fragmentos en una respuesta coherente. " \
+		# "No repita texto. Cite los fragmentos utilizando la notación [${number}]. Cite sólo los fragmentos más relevantes que respondan con precisión a la pregunta. " \
+		# "Si distintos fragmentos se refieren a distintas entidades con el mismo nombre, escriba una respuesta distinta para cada entidad",
 }
 
 HYDE = "Write an example answer to the following question. Don't write generic answer, just assume everything that is not known."
