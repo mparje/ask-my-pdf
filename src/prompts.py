@@ -34,7 +34,7 @@ TASK = {
 		# "Si distintos fragmentos se refieren a distintas entidades con el mismo nombre, escriba una respuesta distinta para cada entidad",
 }
 
-HYDE = "Write an example answer to the following question. Don't write generic answer, just assume everything that is not known."
+HYDE = "Escribe un ejemplo de respuesta a la siguiente pregunta. No escriba una respuesta genérica, asuma todo lo que no se sabe."
 
 # TODO
 SUMMARY = {
