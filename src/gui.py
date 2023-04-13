@@ -1,5 +1,5 @@
 __version__ = "0.4.8.2"
-app_name = "Ask my PDF"
+app_name = "PREGUNTO A MI PDF"
 
 
 # BOILERPLATE
@@ -63,21 +63,12 @@ def ui_info():
 	# Ask my PDF
 	version {__version__}
 	
-	Question answering system built on top of GPT3.
+	Sistema de preguntas y respuestas construido sobre GPT3.
 	""")
 	ui_spacer(1)
-	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	st.write("JHecho por [Maciej Obarski](https://www.linkedin.com/in/mobarski/). Adaptado por Moris Polanco.", unsafe_allow_html=True)
 	ui_spacer(1)
-	st.markdown("""
-		Thank you for your interest in my application.
-		Please be aware that this is only a Proof of Concept system
-		and may contain bugs or unfinished features.
-		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
-		on Twitter for news and updates.
-		""")
-	ui_spacer(1)
-	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
-
+	
 def ui_api_key():
 	if ss['community_user']:
 		st.write('## 1. Optional - enter your OpenAI API key')
@@ -120,9 +111,9 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 2. Upload or select your PDF file')
+	st.write('## 2. ba o seleccione su PDF')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
-	t1,t2 = st.tabs(['UPLOAD','SELECT'])
+	t1,t2 = st.tabs(['SUBA','SELECCIONE'])
 	with t1:
 		st.file_uploader('pdf file', type='pdf', key='pdf_file', disabled=disabled, on_change=index_pdf_file, label_visibility="collapsed")
 		b_save()
@@ -188,7 +179,7 @@ def ui_hyde_prompt():
 	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
 
 def ui_question():
-	st.write('## 3. Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
+	st.write('## 3. Pregunte'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
