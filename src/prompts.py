@@ -3,7 +3,7 @@
 # TAREAS: Ignore los problemas de OCR en el texto a continuación.
 
 TAREA = {
-	«v6»: (
+	"v6": (
 			"Responda la pregunta con sinceridad basada en el texto a continuación. "
 			"Incluye cita literal y un comentario donde encontrarlo en el texto (número de página)".
 			#"Después de la cita, escriba una explicación paso a paso en un nuevo párrafo. "
@@ -11,7 +11,7 @@ TAREA = {
 			"Usa viñetas. "
 			#"Después de eso, intente reformular la pregunta original para que pueda dar mejores resultados. " 
 		),
-	«v5»: (
+	"v5": (
 			"Responda la pregunta con sinceridad basada en el texto a continuación. "
 			"Incluya al menos una cita literal (marcada entre comillas) y un comentario donde encontrarla en el texto (es decir, el nombre de la sección y el número de página). "
 			"Use puntos suspensivos en la cita para omitir partes irrelevantes de la cita. "
