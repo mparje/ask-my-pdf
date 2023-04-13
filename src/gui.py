@@ -1,5 +1,5 @@
 __version__ = "0.4.8.2"
-app_name = "PREGAvanzadoPDF"
+app_name = "Pregunte a PDF"
 
 
 # BOILERPLATE
