@@ -4,12 +4,12 @@
 
 TASK = {
 	'v6': (
-			"Answer the question truthfully based on the text below. "
-			"Include verbatim quote and a comment where to find it in the text (page number). "
-			#"After the quote write a step by step explanation in a new paragraph. "
-			"After the quote write a step by step explanation. "
-			"Use bullet points. "
-			#"After that try to rephrase the original question so it might give better results. " 
+			" Contesta con sinceridad a la pregunta basándote en el texto que aparece a continuación. "
+			" Incluya la cita textual y un comentario sobre dónde encontrarla en el texto (número de página). "
+			#Después de la cita, escriba una explicación paso a paso en un nuevo párrafo. "
+			"Después de la cita, escriba una explicación paso a paso. "
+			"Utilice viñetas. "
+			#" "Después intenta reformular la pregunta original para que dé mejores resultados. "
 		),
 	'v5': (
 			"Answer the question truthfully based on the text below. "
