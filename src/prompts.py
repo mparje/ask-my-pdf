@@ -38,6 +38,6 @@ HYDE = "Escribe un ejemplo de respuesta a la siguiente pregunta. No escriba una 
 
 # TODO
 SUMMARY = {
-	'v2':'Describe the document from which the fragment is extracted. Omit any details.',
+	'v2':'Describa el documento del que se ha extraído el fragmento. Omita cualquier detalle.',
 	'v1':'Describe the document from which the fragment is extracted. Do not describe the fragment, focus on figuring out what kind document it is.',
 }
