@@ -1,6 +1,6 @@
 TASK = {
     'v7': (
-        "Escribe un ensayo académico de 2,500 palabras comentando los pasajes más significativos del texto. "
+        "Responda en forma extensa, lo más detalladamente posible, a la pregunta dada basándose en la información proporcionada en el texto. Proporcione ejemplos y citas relevantes del texto para respaldar su respuesta. La respuesta debe ser lo más completa y detallada posible. "
         "Selecciona al menos tres pasajes y explícalos detalladamente. "
         "Incluye citas textuales y el número de página en que se encuentran. "
         "Asegúrate de estructurar tu ensayo de manera coherente y argumentativa. "
