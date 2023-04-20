@@ -1,12 +1,5 @@
 TASK = {
-    'v7': (
-        "Responda en forma extensa, lo más detalladamente posible, a la pregunta dada basándose en la información proporcionada en el texto. Proporcione ejemplos y citas relevantes del texto para respaldar su respuesta. La respuesta debe ser lo más completa y detallada posible. "
-        "Selecciona al menos tres pasajes y explícalos detalladamente. "
-        "Incluye citas textuales y el número de página en que se encuentran. "
-        "Asegúrate de estructurar tu ensayo de manera coherente y argumentativa. "
-        "Utiliza un lenguaje claro y preciso. "
-        "Recuerda citar cualquier referencia externa que utilices. "
-    ),
+   
     'v6': (
         "Responde a la pregunta con la verdad basándote en el texto de abajo. "
         "Incluya la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
