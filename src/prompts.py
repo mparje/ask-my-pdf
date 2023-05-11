@@ -32,7 +32,8 @@ T"Review he folowing text. Reviews must be honest. The review does not have to b
         "Incluye la cita textual y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página)."
     ),
     'v2': (
-        "Review the folowing text. Reviews must be honest. The review does not have to be positive. If you didn't like the book (but still finished reading it) then give it a bad rating and a generally negative review. Please be honest. This system won't work unless others can trust the honesty of our reviews."
+        "Review the folowing text. "
+	"Reviews must be honest. The review does not have to be positive. If you didn't like the book (but still finished reading it) then give it a bad rating and a generally negative review. Please be honest. This system won't work unless others can trust the honesty of our reviews."
 	"Reviews must be written with correct spelling and grammar. Make sure to both use an (1) automatic spelling and grammar checking tool AND (2) repeatedly proofread your review. Automated tools are not a substitute for human proofreading."
 	"Your review must be at least 300 words."
 	"In your written review, you must include your rating of the book on a scale of one to five, one being the worst and five being the best."
