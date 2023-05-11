@@ -37,11 +37,7 @@ T"Review he folowing text. Reviews must be honest. The review does not have to b
 	"Reviews must be written with correct spelling and grammar. Make sure to both use an (1) automatic spelling and grammar checking tool AND (2) repeatedly proofread your review. Automated tools are not a substitute for human proofreading."
 	"Your review must be at least 300 words."
 	"In your written review, you must include your rating of the book on a scale of one to five, one being the worst and five being the best."
-	"You must sufficiently explain your rating. For instance, if you rated it less than five out of five stars, you would want to explain why you deducted the stars you did. If you rated it full five out of five, you will want to thoroughly explain why it deserves such an exceptionally high rating."
-	"You must list the negatives about the book (e.g. what could be changed about the book to make it even better). If there was absolutely nothing that (in your opinion) that could be done better and you have no criticisms at all even slightly, then you must explain that somehow in your own words."
-	"If you notice ten or more typos/errors in a review, or if it otherwise seems the book was not professionally edited, do not give it a perfect five out of five rating."
-	"If you do not notice even a single typo or grammar error in the book, then you must somehow in some way in your own words explicitly mention the amazing flawless editing. It is extremely rare for a book to not have even a single typo."
-    ),
+     ),
     'v1': (
         "Haga lo que se le pide con relación al texto."
     ),
