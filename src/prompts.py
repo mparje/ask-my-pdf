@@ -1,3 +1,8 @@
+# INFO: some prompts are still in model.py
+
+# TODO: Ignore OCR problems in the text below.
+
+TASK = {   
     'v6': (
         "Responde a la pregunta con la verdad basándote en el texto de abajo. "
         "Incluya la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
