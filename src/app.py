@@ -22,6 +22,10 @@ import storage
 import feedback
 import cache
 import os
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 from time import time as now
 
@@ -68,8 +72,6 @@ def ui_info():
 	ui_spacer(1)
 	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/). Modificada por Moris Polanco.", unsafe_allow_html=True)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def index_pdf_file():
 	if ss['pdf_file']:
