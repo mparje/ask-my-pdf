@@ -18,11 +18,6 @@ header3 = st.empty() # for errors / messages
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Rest of the code...
-
-
-
-
 # IMPORTS
 
 import prompts
@@ -37,46 +32,45 @@ from time import time as now
 # HANDLERS
 
 def on_api_key_change():
-	api_key = ss.get('api_key') or os.getenv('OPENAI_KEY')
-	model.use_key(api_key) # TODO: empty api_key
-	#
-	if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
-	ss['storage'] = storage.get_storage(api_key, data_dict=ss['data_dict'])
-	ss['cache'] = cache.get_cache()
-	ss['user'] = ss['storage'].folder # TODO: refactor user 'calculation' from get_storage
-	model.set_user(ss['user'])
-	ss['feedback'] = feedback.get_feedback_adapter(ss['user'])
-	ss['feedback_score'] = ss['feedback'].get_score()
-	#
-	ss['debug']['storage.folder'] = ss['storage'].folder
-	ss['debug']['storage.class'] = ss['storage'].__class__.__name__
+    api_key = ss.get('api_key') or os.getenv('OPENAI_KEY')
+    model.use_key(api_key) # TODO: empty api_key
+    #
+    if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
+    ss['storage'] = storage.get_storage(api_key, data_dict=ss['data_dict'])
+    ss['cache'] = cache.get_cache()
+    ss['user'] = ss['storage'].folder # TODO: refactor user 'calculation' from get_storage
+    model.set_user(ss['user'])
+    ss['feedback'] = feedback.get_feedback_adapter(ss['user'])
+    ss['feedback_score'] = ss['feedback'].get_score()
+    #
+    ss['debug']['storage.folder'] = ss['storage'].folder
+    ss['debug']['storage.class'] = ss['storage'].__class__.__name__
 
 
 ss['community_user'] = os.getenv('COMMUNITY_USER')
 if 'user' not in ss and ss['community_user']:
-	on_api_key_change() # use community key
+    on_api_key_change() # use community key
 
 # COMPONENTS
 
-
 def ui_spacer(n=2, line=False, next_n=0):
-	for _ in range(n):
-		st.write('')
-	if line:
-		st.tabs([' '])
-	for _ in range(next_n):
-		st.write('')
+    for _ in range(n):
+        st.write('')
+    if line:
+        st.tabs([' '])
+    for _ in range(next_n):
+        st.write('')
 
 def ui_info():
-	st.markdown(f"""
-	# Ask my PDF
-	version {__version__}
-	
-	Question answering system built on top of GPT3.
-	""")
-	ui_spacer(1)
-	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
-	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
+    st.markdown(f"""
+    # Ask my PDF
+    version {__version__}
+    
+    Question answering system built on top of GPT3.
+    """)
+    ui_spacer(1)
+    st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+    st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
 def ui_api_key():
 	if ss['community_user']:
