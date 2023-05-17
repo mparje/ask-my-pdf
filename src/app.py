@@ -73,248 +73,104 @@ def ui_info():
     st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
 def ui_api_key():
-	if ss['community_user']:
-		st.write('## 1. Optional - enter your OpenAI API key')
-		t1,t2 = st.tabs(['community version','enter your own API key'])
-		with t1:
-			pct = model.community_tokens_available_pct()
-			st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
-			st.progress(pct/100)
-			st.write('Refresh in: ' + model.community_tokens_refresh_in())
-			st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
-			ss['community_pct'] = pct
-			ss['debug']['community_pct'] = pct
-		with t2:
-			openai.api_key = os.getenv("OPENAI_API_KEY")
+    if ss['community_user']:
+        st.write('## 1. Optional - enter your OpenAI API key')
+        t1,t2 = st.tabs(['community version','enter your own API key'])
+        with t1:
+            pct = model.community_tokens_available_pct()
+            st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
+            st.progress(pct/100)
+            st.write('Refresh in: ' + model.community_tokens_refresh_in())
+            st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
+            ss['community_pct'] = pct
+            ss['community_tokens_refresh_in'] = model.community_tokens_refresh_in()
+            if pct < 5:
+                st.write('Please consider entering your own API key to be able to use the app.')
+                return
+            if st.button('I want to enter my own API key'):
+                ss['community_user'] = False
+                on_api_key_change()
+                return
+        with t2:
+            api_key = st.text_input("API key")
+            if api_key:
+                ss['api_key'] = api_key
+                on_api_key_change()
+    else:
+        if not ss['api_key']:
+            st.write('## 1. Enter your OpenAI API key')
+            api_key = st.text_input("API key")
+            if api_key:
+                ss['api_key'] = api_key
+                on_api_key_change()
+                ui_spacer(2)
+                st.stop()
+        else:
+            st.write('## 1. API key set')
 
-def index_pdf_file():
-	if ss['pdf_file']:
-		ss['filename'] = ss['pdf_file'].name
-		if ss['filename'] != ss.get('fielname_done'): # UGLY
-			with st.spinner(f'indexing {ss["filename"]}'):
-				index = model.index_file(ss['pdf_file'], ss['filename'], fix_text=ss['fix_text'], frag_size=ss['frag_size'], cache=ss['cache'])
-				ss['index'] = index
-				debug_index()
-				ss['filename_done'] = ss['filename'] # UGLY
+def ui_model_info():
+    st.write('## 2. Select model')
+    model_names = model.get_model_names()
+    model_name = st.selectbox('Model', model_names, index=model_names.index(model.get_model_name()))
+    model.use_model(model_name)
+    ss['debug']['model.name'] = model_name
 
-def debug_index():
-	index = ss['index']
-	d = {}
-	d['hash'] = index['hash']
-	d['frag_size'] = index['frag_size']
-	d['n_pages'] = len(index['pages'])
-	d['n_texts'] = len(index['texts'])
-	d['summary'] = index['summary']
-	d['pages'] = index['pages']
-	d['texts'] = index['texts']
-	d['time'] = index.get('time',{})
-	ss['debug']['index'] = d
+def ui_storage_info():
+    st.write('## 3. Select storage')
+    storage_names = storage.get_storage_names()
+    storage_name = st.selectbox('Storage', storage_names, index=storage_names.index(ss['storage'].name if 'storage' in ss else ''))
+    if 'storage' not in ss or storage_name != ss['storage'].name:
+        ss['data_dict'] = ss['storage'].get_data_dict()
+        ss['storage'] = storage.get_storage(storage_name, data_dict=ss['data_dict'])
+    ss['debug']['storage.class'] = ss['storage'].__class__.__name__
+    ss['debug']['storage.name'] = ss['storage'].name
 
-def ui_pdf_file():
-	st.write('## Upload or select your PDF file')
-	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
-	t1,t2 = st.tabs(['UPLOAD','SELECT'])
-	with t1:
-		st.file_uploader('pdf file', type='pdf', key='pdf_file', disabled=disabled, on_change=index_pdf_file, label_visibility="collapsed")
-		b_save()
-	with t2:
-		filenames = ['']
-		if ss.get('storage'):
-			filenames += ss['storage'].list()
-		def on_change():
-			name = ss['selected_file']
-			if name and ss.get('storage'):
-				with ss['spin_select_file']:
-					with st.spinner('loading index'):
-						t0 = now()
-						index = ss['storage'].get(name)
-						ss['debug']['storage_get_time'] = now()-t0
-				ss['filename'] = name # XXX
-				ss['index'] = index
-				debug_index()
-			else:
-				#ss['index'] = {}
-				pass
-		st.selectbox('select file', filenames, on_change=on_change, key='selected_file', label_visibility="collapsed", disabled=disabled)
-		b_delete()
-		ss['spin_select_file'] = st.empty()
+def ui_file_upload():
+    st.write('## 4. Upload PDF file')
+    uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+    if uploaded_file is not None:
+        file_contents = uploaded_file.read()
+        file_name = uploaded_file.name
+        ss['file_contents'] = file_contents
+        ss['file_name'] = file_name
 
-def ui_show_debug():
-	st.checkbox('show debug section', key='show_debug')
+def ui_question_input():
+    st.write('## 5. Enter your question')
+    question = st.text_input("Question")
+    if question:
+        ss['question'] = question
 
-def ui_fix_text():
-	st.checkbox('fix common PDF problems', value=True, key='fix_text')
+def ui_feedback():
+    if 'answer' in ss:
+        st.write('## 6. Feedback')
+        if 'feedback_text' not in ss:
+            ss['feedback_text'] = ss.get('answer') or ss.get('debug').get('answer') or ''
+        st.write(ss['feedback_text'])
+        ss['feedback_text'] = st.text_input("If the answer is not satisfactory, please provide feedback.")
 
-def ui_temperature():
-	#st.slider('temperature', 0.0, 1.0, 0.0, 0.1, key='temperature', format='%0.1f')
-	ss['temperature'] = 0.0
+def ui_submit():
+    if st.button('Submit'):
+        header3.empty()
+        header1.info('Working...')
+        answer = model.get_answer(ss['question'], ss['file_contents'])
+        ss['answer'] = answer
+        header1.success('Done!')
+        header2.write(answer)
+        feedback_text = ss.get('feedback_text') or ss.get('answer') or ss.get('debug').get('answer')
+        if feedback_text:
+            ss['feedback'].save(feedback_text)
+        ss['debug']['answer'] = answer
 
-def ui_fragments():
-	#st.number_input('fragment size', 0,2000,200, step=100, key='frag_size')
-	st.selectbox('fragment size (characters)', [0,200,300,400,500,600,700,800,900,1000], index=3, key='frag_size')
-	b_reindex()
-	st.number_input('max fragments', 1, 10, 4, key='max_frags')
-	st.number_input('fragments before', 0, 3, 1, key='n_frag_before') # TODO: pass to model
-	st.number_input('fragments after',  0, 3, 1, key='n_frag_after')  # TODO: pass to model
+# MAIN
 
-def ui_model():
-	models = ['gpt-4','gpt-3.5-turbo','text-davinci-003','text-curie-001']
-	st.selectbox('main model', models, key='model', disabled=not ss.get('api_key'))
-	st.selectbox('embedding model', ['text-embedding-ada-002'], key='model_embed') # FOR FUTURE USE
-
-def ui_hyde():
-	st.checkbox('use HyDE', value=True, key='use_hyde')
-
-def ui_hyde_summary():
-	st.checkbox('use summary in HyDE', value=True, key='use_hyde_summary')
-
-def ui_task_template():
-	st.selectbox('task prompt template', prompts.TASK.keys(), key='task_name')
-
-def ui_task():
-	x = ss['task_name']
-	st.text_area('task prompt', prompts.TASK[x], key='task')
-
-def ui_hyde_prompt():
-	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
-
-def ui_question():
-	st.write('## Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
-	disabled = False
-	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
-
-# REF: Hypotetical Document Embeddings
-def ui_hyde_answer():
-	# TODO: enter or generate
-	pass
-
-def ui_output():
-	output = ss.get('output','')
-	st.markdown(output)
-
-def ui_debug():
-	if ss.get('show_debug'):
-		st.write('### debug')
-		st.write(ss.get('debug',{}))
-
-
-def b_ask():
-	c1,c2,c3,c4,c5 = st.columns([2,1,1,2,2])
-	if c2.button('👍', use_container_width=True, disabled=not ss.get('output')):
-		ss['feedback'].send(+1, ss, details=ss['send_details'])
-		ss['feedback_score'] = ss['feedback'].get_score()
-	if c3.button('👎', use_container_width=True, disabled=not ss.get('output')):
-		ss['feedback'].send(-1, ss, details=ss['send_details'])
-		ss['feedback_score'] = ss['feedback'].get_score()
-	score = ss.get('feedback_score',0)
-	c5.write(f'feedback score: {score}')
-	c4.checkbox('send details', True, key='send_details',
-			help='allow question and the answer to be stored in the ask-my-pdf feedback database')
-	#c1,c2,c3 = st.columns([1,3,1])
-	#c2.radio('zzz',['👍',r'...',r'👎'],horizontal=True,label_visibility="collapsed")
-	#
-	disabled = (not ss.get('api_key') and not ss.get('community_pct',0)) or not ss.get('index')
-	if c1.button('get answer', disabled=disabled, type='primary', use_container_width=True):
-		question = ss.get('question','')
-		temperature = ss.get('temperature', 0.0)
-		hyde = ss.get('use_hyde')
-		hyde_prompt = ss.get('hyde_prompt')
-		if ss.get('use_hyde_summary'):
-			summary = ss['index']['summary']
-			hyde_prompt += f" Context: {summary}\n\n"
-		task = ss.get('task')
-		max_frags = ss.get('max_frags',1)
-		n_before = ss.get('n_frag_before',0)
-		n_after  = ss.get('n_frag_after',0)
-		index = ss.get('index',{})
-		with st.spinner('preparing answer'):
-			resp = model.query(question, index,
-					task=task,
-					temperature=temperature,
-					hyde=hyde,
-					hyde_prompt=hyde_prompt,
-					max_frags=max_frags,
-					limit=max_frags+2,
-					n_before=n_before,
-					n_after=n_after,
-					model=ss['model'],
-				)
-		usage = resp.get('usage',{})
-		usage['cnt'] = 1
-		ss['debug']['model.query.resp'] = resp
-		ss['debug']['resp.usage'] = usage
-		ss['debug']['model.vector_query_time'] = resp['vector_query_time']
-		
-		q = question.strip()
-		a = resp['text'].strip()
-		ss['answer'] = a
-		output_add(q,a)
-		st.experimental_rerun() # to enable the feedback buttons
-
-def b_clear():
-	if st.button('clear output'):
-		ss['output'] = ''
-
-def b_reindex():
-	# TODO: disabled
-	if st.button('reindex'):
-		index_pdf_file()
-
-def b_reload():
-	if st.button('reload prompts'):
-		import importlib
-		importlib.reload(prompts)
-
-def b_save():
-	db = ss.get('storage')
-	index = ss.get('index')
-	name = ss.get('filename')
-	api_key = ss.get('api_key')
-	disabled = not api_key or not db or not index or not name
-	help = "The file will be stored for about 90 days. Available only when using your own API key."
-	if st.button('save encrypted index in ask-my-pdf', disabled=disabled, help=help):
-		with st.spinner('saving to ask-my-pdf'):
-			db.put(name, index)
-
-def b_delete():
-	db = ss.get('storage')
-	name = ss.get('selected_file')
-	# TODO: confirm delete
-	if st.button('delete from ask-my-pdf', disabled=not db or not name):
-		with st.spinner('deleting from ask-my-pdf'):
-			db.delete(name)
-		#st.experimental_rerun()
-
-def output_add(q,a):
-	if 'output' not in ss: ss['output'] = ''
-	q = q.replace('$',r'\$')
-	a = a.replace('$',r'\$')
-	new = f'#### {q}\n{a}\n\n'
-	ss['output'] = new + ss['output']
-
-# LAYOUT
-
-with st.sidebar:
-	ui_info()
-	ui_spacer(2)
-	with st.expander('advanced'):
-		ui_show_debug()
-		b_clear()
-		ui_model()
-		ui_fragments()
-		ui_fix_text()
-		ui_hyde()
-		ui_hyde_summary()
-		ui_temperature()
-		b_reload()
-		ui_task_template()
-		ui_task()
-		ui_hyde_prompt()
-
+header1.info('Welcome to Ask my PDF')
+ui_spacer()
+ui_info()
+ui_spacer()
 ui_api_key()
-ui_pdf_file()
-ui_question()
-ui_hyde_answer()
-b_ask()
-ui_output()
-ui_debug()
+ui_spacer()
+ui_model_info()
+ui_spacer()
+ui_storage_info()
+ui_spacer()
+ui_file_upload
