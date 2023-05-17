@@ -19,6 +19,7 @@ header3 = st.empty() # for errors / messages
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
+
 # IMPORTS
 
 import prompts
@@ -72,15 +73,6 @@ def ui_info():
 	""")
 	ui_spacer(1)
 	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
-	ui_spacer(1)
-	st.markdown("""
-		Thank you for your interest in my application.
-		Please be aware that this is only a Proof of Concept system
-		and may contain bugs or unfinished features.
-		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
-		on Twitter for news and updates.
-		""")
-	ui_spacer(1)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
 def ui_api_key():
@@ -96,10 +88,7 @@ def ui_api_key():
 			ss['community_pct'] = pct
 			ss['debug']['community_pct'] = pct
 		with t2:
-			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
-	else:
-		st.write('## 1. Enter your OpenAI API key')
-		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
+			openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def index_pdf_file():
 	if ss['pdf_file']:
@@ -125,7 +114,7 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 2. Upload or select your PDF file')
+	st.write('## Upload or select your PDF file')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
 	t1,t2 = st.tabs(['UPLOAD','SELECT'])
 	with t1:
@@ -193,7 +182,7 @@ def ui_hyde_prompt():
 	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
 
 def ui_question():
-	st.write('## 3. Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
+	st.write('## Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
