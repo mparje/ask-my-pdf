@@ -3,22 +3,21 @@ app_name = "Ask my PDF"
 
 # BOILERPLATE
 
-import streamlit as st
 import os
-from time import time as now
+import streamlit as st
+import openai
+st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
+ss = st.session_state
+if 'debug' not in ss: ss['debug'] = {}
+import css
+st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
+header1 = st.empty() # for errors / messages
+header2 = st.empty() # for errors / messages
+header3 = st.empty() # for errors / messages
 
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
-ss = st.session_state
-if 'debug' not in ss:
-    ss['debug'] = {}
-import css
-st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
-header1 = st.empty()  # for errors / messages
-header2 = st.empty()  # for errors / messages
-header3 = st.empty()  # for errors / messages
 
 # IMPORTS
 
