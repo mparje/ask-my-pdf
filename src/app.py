@@ -1,18 +1,24 @@
 __version__ = "0.4.8.2"
 app_name = "Ask my PDF"
 
-
 # BOILERPLATE
 
 import streamlit as st
+import os
+from time import time as now
+
+# Set OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
 ss = st.session_state
-if 'debug' not in ss: ss['debug'] = {}
+if 'debug' not in ss:
+    ss['debug'] = {}
 import css
 st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
-header1 = st.empty() # for errors / messages
-header2 = st.empty() # for errors / messages
-header3 = st.empty() # for errors / messages
+header1 = st.empty()  # for errors / messages
+header2 = st.empty()  # for errors / messages
+header3 = st.empty()  # for errors / messages
 
 # IMPORTS
 
@@ -22,10 +28,6 @@ import storage
 import feedback
 import cache
 import os
-import openai
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
 
 from time import time as now
 
@@ -70,8 +72,35 @@ def ui_info():
 	Question answering system built on top of GPT3.
 	""")
 	ui_spacer(1)
-	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/). Modificada por Moris Polanco.", unsafe_allow_html=True)
+	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	ui_spacer(1)
+	st.markdown("""
+		Thank you for your interest in my application.
+		Please be aware that this is only a Proof of Concept system
+		and may contain bugs or unfinished features.
+		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
+		on Twitter for news and updates.
+		""")
+	ui_spacer(1)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
+
+def ui_api_key():
+	if ss['community_user']:
+		st.write('## 1. Optional - enter your OpenAI API key')
+		t1,t2 = st.tabs(['community version','enter your own API key'])
+		with t1:
+			pct = model.community_tokens_available_pct()
+			st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
+			st.progress(pct/100)
+			st.write('Refresh in: ' + model.community_tokens_refresh_in())
+			st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
+			ss['community_pct'] = pct
+			ss['debug']['community_pct'] = pct
+		with t2:
+			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
+	else:
+		st.write('## 1. Enter your OpenAI API key')
+		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
 	if ss['pdf_file']:
@@ -97,7 +126,7 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 1. Upload or select your PDF file')
+	st.write('## 2. Upload or select your PDF file')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
 	t1,t2 = st.tabs(['UPLOAD','SELECT'])
 	with t1:
@@ -165,7 +194,7 @@ def ui_hyde_prompt():
 	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
 
 def ui_question():
-	st.write('## 2. Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
+	st.write('## 3. Ask questions'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
@@ -297,6 +326,7 @@ with st.sidebar:
 		ui_task()
 		ui_hyde_prompt()
 
+ui_api_key()
 ui_pdf_file()
 ui_question()
 ui_hyde_answer()
