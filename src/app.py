@@ -127,5 +127,16 @@ def ui_pdf_file():
                                            label_visibility="collapsed")
         b_save()
 
+def b_save():
+    col1,col2 = st.columns(2)
+    if col1.button('Save'):
+        if ss['pdf_file'] and ss['index']:
+            name = ss['filename'] or 'index'
+            with col2.spinner('Saving...'):
+                ss['storage'].put(name, ss['index'])
+                st.write(f'saved {name}')
+        else:
+            st.write('no index or PDF file to save')
 
-ui_pdf_file() 
+
+ui_pdf_file()
