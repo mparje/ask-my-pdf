@@ -68,7 +68,7 @@ def ui_info():
 def index_pdf_file():
     if not ss.get('pdf_file'):
         with st.spinner('indexing Constitution'):
-            url = "https://arjeapps.com/constitucion"
+            url = "https://www.cijc.org/es/NuestrasConstituciones/GUATEMALA-Constitucion.pdf"
             constitution_text = requests.get(url).text
             index = model.index_text(constitution_text, "constitution", fix_text=ss['fix_text'], frag_size=ss['frag_size'], cache=ss['cache'])
             ss['index'] = index
