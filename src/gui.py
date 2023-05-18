@@ -74,7 +74,7 @@ def ui_info():
 		Por ahora, usted debe ingresar el documento.
 		Solo se puede analizar un documento a la vez.
 		Para usar GPT-4, su clave de OpenAI debe estar autorizada para ello. 
-		Use las distintas instrucciones del menú avanzado de la izquierda.
+		Use las distintas instrucciones del menú avanzado de abajo.
 		""")
 	ui_spacer(1)
 	
