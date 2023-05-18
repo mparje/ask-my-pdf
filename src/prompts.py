@@ -14,7 +14,7 @@ TASK = {
         "Incluye al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, número de artículo y nú,ero de página). "
     ),
     'v4': (
-        "A la pregunta '¿Qué dice el artículo xx?' responde citando textualmente al artículo en cuestión, basándote en el texto de abajo. " 
+        "A la pregunta '¿Qué dice el artículo xx?' o 'Artículo xx', o 'art xx', responde citando textualmente al artículo en cuestión, basándote en el texto de abajo. " 
         "Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, número de artículo y número de página). " 
         "Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven."
     ),
