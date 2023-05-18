@@ -123,7 +123,6 @@ def ui_pdf_file():
                 pass
         st.write("Select a PDF file from your cloud storage.")
         ss['selected_file'] = st.selectbox('select file', filenames, on_change=on_change,
-                                           key='selected_file',
                                            label_visibility="collapsed")
         b_save()
 
