@@ -69,10 +69,12 @@ def ui_info():
 	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		Este chatbot le proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
-		Tome en cuenta que, por ahora, usted debe ingresar la ley o el documento y que solo se puede analizar un documento a la vez.
-		Por otra parte, para usar GPT-4 su clave de OpenAI debeestar autorizada para ello. 
-		Busque la instrucción más adecuada en el menú avanzado para aprovechar al máximo LeybotGt. 
+		LeybotGt analiza leyes y documentos legales. 
+		Responde preguntas y resuelve casos basado el documento que se le proporciona.
+		Por ahora, usted debe ingresar el documento.
+		Solo se puede analizar un documento a la vez.
+		Para usar GPT-4, su clave de OpenAI debe estar autorizada para ello. 
+		Use las distintas instrucciones del menú avanzado de la izquierda.
 		""")
 	ui_spacer(1)
 	
@@ -92,7 +94,7 @@ def ui_api_key():
 		with t2:
 			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 	else:
-		st.write('## 1. Ingrese su OpenAI API key')
+		st.write('## Ingrese su OpenAI API key')
 		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
@@ -119,7 +121,7 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 2. Suba o seleccione su PDF')
+	st.write('## Suba o seleccione su PDF')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
 	t1,t2 = st.tabs(['UPLOAD','SELECT'])
 	with t1:
@@ -187,7 +189,7 @@ def ui_hyde_prompt():
 	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
 
 def ui_question():
-	st.write('## 3. Pregunte '+(f' a {ss["filename"]}' if ss.get('filename') else ''))
+	st.write('## Pregunte '+(f' a {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
