@@ -66,7 +66,7 @@ def ui_info():
 	La primera herramienta de inteligencia artficial para abogados de Guatemala.
 	""")
 	ui_spacer(1)
-	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.)", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
 		Descubre LeybotGt, tu compañero legal en Guatemala. Este chatbot te proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
@@ -74,7 +74,6 @@ def ui_info():
 		Si autorizas la API de OpenAI para utilizar GPT-4, obtendrás respuestas aún más precisas y detalladas. 
 		Busque la instrucción más adecuada en el menú avanzado para aprovechar al máximo LeybotGt. 
 		Recuerda que LeybotGt es una herramienta informativa, siempre consulta a un abogado para asesoramiento legal específico.
-		Adaptado por Moris Polanco sobre el original de Maciej Obarski.
 		""")
 	ui_spacer(1)
 	
@@ -189,7 +188,7 @@ def ui_hyde_prompt():
 	st.text_area('HyDE prompt', prompts.HYDE, key='hyde_prompt')
 
 def ui_question():
-	st.write('## 3. Pregunte'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
+	st.write('## 3. Pregunte '+(f' a {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
