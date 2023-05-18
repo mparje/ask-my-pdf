@@ -66,14 +66,13 @@ def ui_info():
 	La primera herramienta de inteligencia artficial para abogados de Guatemala.
 	""")
 	ui_spacer(1)
-	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.)", unsafe_allow_html=True)
+	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		Descubre LeybotGt, tu compañero legal en Guatemala. Este chatbot te proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
+		Este chatbot te proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
 		Accede a información confiable sobre diversos temas legales. 
 		Si autorizas la API de OpenAI para utilizar GPT-4, obtendrás respuestas aún más precisas y detalladas. 
 		Busque la instrucción más adecuada en el menú avanzado para aprovechar al máximo LeybotGt. 
-		Recuerda que LeybotGt es una herramienta informativa, siempre consulta a un abogado para asesoramiento legal específico.
 		""")
 	ui_spacer(1)
 	
