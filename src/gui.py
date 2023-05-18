@@ -1,4 +1,4 @@
-__version__ = "0.4.8.2"
+__version__ = "0.4.9.0"
 app_name = "Ask my PDF"
 
 
