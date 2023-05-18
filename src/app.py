@@ -7,7 +7,8 @@ app_name = "Ask my PDF"
 import streamlit as st
 st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
 ss = st.session_state
-if 'debug' not in ss: ss['debug'] = {}
+if 'debug' not in ss:
+    ss['debug'] = {}
 import css
 st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 header1 = st.empty() # for errors / messages
@@ -28,6 +29,7 @@ import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
 def ui_spacer(n=2, line=False, next_n=0):
     for _ in range(n):
         st.write('')
@@ -35,6 +37,7 @@ def ui_spacer(n=2, line=False, next_n=0):
         st.tabs([' '])
     for _ in range(next_n):
         st.write('')
+
 
 def ui_info():
     st.markdown(f"""
@@ -44,7 +47,8 @@ def ui_info():
     Question answering system built on top of GPT3.
     """)
     ui_spacer(1)
-    st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+    st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).",
+             unsafe_allow_html=True)
     ui_spacer(1)
     st.markdown("""
         Thank you for your interest in my application.
@@ -60,12 +64,14 @@ def ui_info():
 def index_pdf_file(file):
     if ss['pdf_file']:
         ss['filename'] = file.name
-        if ss['filename'] != ss.get('fielname_done'): # UGLY
+        if ss['filename'] != ss.get('filename_done'): # UGLY
             with st.spinner(f'indexing {ss["filename"]}'):
-                index = model.index_file(file, ss['filename'], fix_text=ss['fix_text'], frag_size=ss['frag_size'], cache=ss['cache'])
+                index = model.index_file(file, ss['filename'], fix_text=ss['fix_text'],
+                                         frag_size=ss['frag_size'], cache=ss['cache'])
                 ss['index'] = index
                 debug_index()
                 ss['filename_done'] = ss['filename'] # UGLY
+
 
 def debug_index():
     index = ss['index']
@@ -80,6 +86,7 @@ def debug_index():
     d['time'] = index.get('time',{})
     ss['debug']['index'] = d
 
+
 def ui_pdf_file():
     st.write('## 2. Upload or select your PDF file')
     disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
@@ -88,8 +95,10 @@ def ui_pdf_file():
     # 1. Upload file
     with t1:
         st.write("Choose a PDF file from your computer.")
-        file = st.file_uploader('pdf file', type='pdf', key='pdf_file', deafen=True, on_change=lambda f: index_pdf_file(f) if f else None)
+        file = st.file_uploader('pdf file', type='pdf', key='pdf_file',
+                                accept_multiple_files=False)
         if file is not None:
+            index_pdf_file(file)
             st.write("File uploaded!")
         b_save()
     
@@ -113,7 +122,10 @@ def ui_pdf_file():
                 #ss['index'] = {}
                 pass
         st.write("Select a PDF file from your cloud storage.")
-        ss['selected_file'] = st.selectbox('select file', filenames, on_change=on_change, key='selected_file', label_visibility="collapsed")
+        ss['selected_file'] = st.selectbox('select file', filenames, on_change=on_change,
+                                           key='selected_file',
+                                           label_visibility="collapsed")
         b_save()
 
-ui_pdf_file()   
+
+ui_pdf_file() 
