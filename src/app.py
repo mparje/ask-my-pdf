@@ -25,7 +25,10 @@ import os
 
 from time import time as now
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# HANDLERS
+
+def on_api_key_change():
+	openai.api_key = or os.getenv('OPENAI_KEY')
 	
 # COMPONENTS
 
@@ -44,8 +47,34 @@ def ui_info():
 	version {__version__}
 	
 	Question answering system built on top of GPT3.
-	
+	""")
+	ui_spacer(1)
+	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	ui_spacer(1)
+	st.markdown("""
+		Thank you for your interest in my application.
+		Please be aware that this is only a Proof of Concept system
+		and may contain bugs or unfinished features.
+		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
+		on Twitter for news and updates.
+		""")
+	ui_spacer(1)
+	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
+def ui_api_key():
+	if ss['community_user']:
+		st.write('## 1. Optional - enter your OpenAI API key')
+		t1,t2 = st.tabs(['community version','enter your own API key'])
+		with t1:
+			pct = model.community_tokens_available_pct()
+			st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
+			st.progress(pct/100)
+			st.write('Refresh in: ' + model.community_tokens_refresh_in())
+			st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
+			ss['community_pct'] = pct
+			ss['debug']['community_pct'] = pct
+		with t2:
+			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 def index_pdf_file():
 	if ss['pdf_file']:
 		ss['filename'] = ss['pdf_file'].name
@@ -270,6 +299,7 @@ with st.sidebar:
 		ui_task()
 		ui_hyde_prompt()
 
+ui_api_key()
 ui_pdf_file()
 ui_question()
 ui_hyde_answer()
