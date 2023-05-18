@@ -241,7 +241,7 @@ def b_save():
 	index = ss.get('index')
 	name = ss.get('filename')
 	api_key = ss.get('api_key')
-	disabled = not api_key or not db or not index or not name
+	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct', 0) < 1)
 	help = "The file will be stored for about 90 days. Available only when using your own API key."
 	if st.button('save encrypted index in ask-my-pdf', disabled=disabled, help=help):
 		with st.spinner('saving to ask-my-pdf'):
