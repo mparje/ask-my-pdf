@@ -126,9 +126,11 @@ def ui_pdf_file():
                                            label_visibility="collapsed")
         b_save()
 
+from datetime import datetime
+
 def b_save():
-    col1,col2 = st.columns(2)
-    if col1.button('Save'):
+    col1, col2 = st.columns(2)
+    if col1.button('Save', key=datetime.now().strftime('%Y%m%d%H%M%S%f')):
         if ss['pdf_file'] and ss['index']:
             name = ss['filename'] or 'index'
             with col2.spinner('Saving...'):
