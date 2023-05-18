@@ -117,8 +117,3 @@ def ui_pdf_file():
         b_save()
 
 ui_pdf_file()   
-ui_question()
-ui_hyde_answer()
-b_ask()
-ui_output()
-ui_debug()
