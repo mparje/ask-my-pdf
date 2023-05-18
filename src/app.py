@@ -27,7 +27,7 @@ from time import time as now
 
 # HANDLERS
 
-	api_key = os.getenv('OPENAI_KEY')
+api_key = os.getenv('OPENAI_KEY')
 	
 def ui_spacer(n=2, line=False, next_n=0):
 	for _ in range(n):
