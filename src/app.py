@@ -22,6 +22,7 @@ import storage
 import feedback
 import cache
 import os
+import openai
 
 from time import time as now
 
