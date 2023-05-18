@@ -83,7 +83,8 @@ def debug_index():
 
 def ui_pdf_file():
 	st.write('## 2. Upload or select your PDF file')
-	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
+	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct', 0) < 1)
+
 	t1,t2 = st.tabs(['UPLOAD','SELECT'])
 	with t1:
 		st.file_uploader('pdf file', type='pdf', key='pdf_file', disabled=disabled, on_change=index_pdf_file, label_visibility="collapsed")
