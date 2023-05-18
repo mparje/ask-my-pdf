@@ -69,9 +69,9 @@ def ui_info():
 	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		Este chatbot te proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
-		Accede a información confiable sobre diversos temas legales. 
-		Si autorizas la API de OpenAI para utilizar GPT-4, obtendrás respuestas aún más precisas y detalladas. 
+		Este chatbot le proporciona respuestas claras y actualizadas sobre las leyes guatemaltecas. 
+		Tome en cuenta que, por ahora, usted debe ingresar la ley o el documento y que solo se puede analizar un documento a la vez.
+		Por otra parte, para usar GPT-4 su clave de OpenAI debeestar autorizada para ello. 
 		Busque la instrucción más adecuada en el menú avanzado para aprovechar al máximo LeybotGt. 
 		""")
 	ui_spacer(1)
