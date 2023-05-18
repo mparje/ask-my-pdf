@@ -25,30 +25,7 @@ import os
 
 from time import time as now
 
-# HANDLERS
-
-def on_api_key_change():
-	api_key = ss.get('api_key') or os.getenv('OPENAI_KEY')
-	model.use_key(api_key) # TODO: empty api_key
-	#
-	if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
-	ss['storage'] = storage.get_storage(api_key, data_dict=ss['data_dict'])
-	ss['cache'] = cache.get_cache()
-	ss['user'] = ss['storage'].folder # TODO: refactor user 'calculation' from get_storage
-	model.set_user(ss['user'])
-	ss['feedback'] = feedback.get_feedback_adapter(ss['user'])
-	ss['feedback_score'] = ss['feedback'].get_score()
-	#
-	ss['debug']['storage.folder'] = ss['storage'].folder
-	ss['debug']['storage.class'] = ss['storage'].__class__.__name__
-
-
-ss['community_user'] = os.getenv('COMMUNITY_USER')
-if 'user' not in ss and ss['community_user']:
-	on_api_key_change() # use community key
-
-# COMPONENTS
-
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def ui_spacer(n=2, line=False, next_n=0):
 	for _ in range(n):
@@ -78,23 +55,6 @@ def ui_info():
 	ui_spacer(1)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
-def ui_api_key():
-	if ss['community_user']:
-		st.write('## 1. Optional - enter your OpenAI API key')
-		t1,t2 = st.tabs(['community version','enter your own API key'])
-		with t1:
-			pct = model.community_tokens_available_pct()
-			st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
-			st.progress(pct/100)
-			st.write('Refresh in: ' + model.community_tokens_refresh_in())
-			st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
-			ss['community_pct'] = pct
-			ss['debug']['community_pct'] = pct
-		with t2:
-			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
-	else:
-		st.write('## 1. Enter your OpenAI API key')
-		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
 	if ss['pdf_file']:
