@@ -1,104 +1,100 @@
-import streamlit as st
-import os
-import openai
-
 __version__ = "0.4.8.2"
 app_name = "Ask my PDF"
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # BOILERPLATE
 
-def on_api_key_change():
-    api_key = st.secrets["OPENAI_API_KEY"]
-    openai.api_key = api_key
-    #
-    if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
-    ss['storage'] = storage.get_storage(api_key, data_dict=ss['data_dict'])
-    ss['cache'] = cache.get_cache()
-    ss['user'] = ss['storage'].folder # TODO: refactor user 'calculation' from get_storage
-    model.set_user(ss['user'])
-    ss['feedback'] = feedback.get_feedback_adapter(ss['user'])
-    ss['feedback_score'] = ss['feedback'].get_score()
-    #
-    ss['debug']['storage.folder'] = ss['storage'].folder
-    ss['debug']['storage.class'] = ss['storage'].__class__.__name__
-
+import streamlit as st
+st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
 ss = st.session_state
+if 'debug' not in ss: ss['debug'] = {}
+import css
+st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
+header1 = st.empty() # for errors / messages
+header2 = st.empty() # for errors / messages
+header3 = st.empty() # for errors / messages
 
-if 'pdf_file' not in ss:
-    ss['pdf_file'] = None
+# IMPORTS
 
-# ---
+import prompts
+import model
+import storage
+import feedback
+import cache
+import os
 
-if __name__ == "__main__":
-    st.set_page_config(page_title=app_name, page_icon=":book:", layout="wide")
+from time import time as now
 
-    # --- state initialization
-    
-    if 'initialized' not in ss:
-        ss['initialized'] = True
-                           
-        print('init settings')
-        
-        ss['cutoff'] = st.secrets.get("PREDICTION_CUTOFF", 0.5)
-        ss['best_k'] = st.secrets.get("BEST_K", 3)
-        ss['answer_context_window'] = st.secrets.get("ANSWER_CONTEXT_WINDOW", 50)
-        ss['overlay'] = None
-        ss['metadata'] = None
-        
-        # feedback
-        ss['categories'] = ['good', 'neutral', 'bad']
-        ss['category_names'] = {'good': '👍', 'neutral': '🤔', 'bad': '👎'}
-        ss['last_well_predicted'] = []
-        ss['debug'] = {}
+# HANDLERS
 
-        # init model
-        model.initialize(
-            best_k=ss['best_k'],
-            openai_engine=st.secrets.get("OPENAI_ENGINE", "text-davinci-002"),
-            cutoff=ss['cutoff']
-        )
-        on_api_key_change()
+def on_api_key_change():
+	api_key = ss.get('api_key') or os.getenv('OPENAI_KEY')
+	model.use_key(api_key) # TODO: empty api_key
+	#
+	if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
+	ss['storage'] = storage.get_storage(api_key, data_dict=ss['data_dict'])
+	ss['cache'] = cache.get_cache()
+	ss['user'] = ss['storage'].folder # TODO: refactor user 'calculation' from get_storage
+	model.set_user(ss['user'])
+	ss['feedback'] = feedback.get_feedback_adapter(ss['user'])
+	ss['feedback_score'] = ss['feedback'].get_score()
+	#
+	ss['debug']['storage.folder'] = ss['storage'].folder
+	ss['debug']['storage.class'] = ss['storage'].__class__.__name__
 
-    # --- ui initialization
 
-    st.sidebar.title(app_name)
+ss['community_user'] = os.getenv('COMMUNITY_USER')
+if 'user' not in ss and ss['community_user']:
+	on_api_key_change() # use community key
 
-    st.sidebar.write("") # vertical spacer
+# COMPONENTS
 
-    idx_page = st.sidebar.radio(
-        "Navigation:",
-        [
-            'Info',
-            'Select PDF file',
-            'Ask a question',
-            'Review',
-            'Feedback'
-        ]
-    )
 
-    st.sidebar.write("") # vertical spacer
+def ui_spacer(n=2, line=False, next_n=0):
+	for _ in range(n):
+		st.write('')
+	if line:
+		st.tabs([' '])
+	for _ in range(next_n):
+		st.write('')
 
-    st.sidebar.write(
-        "🧑‍💻  [GitHub](https://github.com/mobarski/ask-my-pdf)\n"
-        "🙋‍♂️  [Contact](https://www.linkedin.com/in/mobarski/)"
-    )
+def ui_info():
+	st.markdown(f"""
+	# Ask my PDF
+	version {__version__}
+	
+	Question answering system built on top of GPT3.
+	""")
+	ui_spacer(1)
+	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	ui_spacer(1)
+	st.markdown("""
+		Thank you for your interest in my application.
+		Please be aware that this is only a Proof of Concept system
+		and may contain bugs or unfinished features.
+		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
+		on Twitter for news and updates.
+		""")
+	ui_spacer(1)
+	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
 
-    st.sidebar.write("") # vertical spacer
-
-    # --- ui control flow
-
-    if idx_page == 'Info':
-        ui_info()
-    elif idx_page == 'Select PDF file':
-        ui_pdf_selection()
-    elif idx_page == 'Ask a question':
-        ui_question()
-    elif idx_page == 'Review':
-        ui_review()
-    elif idx_page == 'Feedback':
-        ui_feedback()
+def ui_api_key():
+	if ss['community_user']:
+		st.write('## 1. Optional - enter your OpenAI API key')
+		t1,t2 = st.tabs(['community version','enter your own API key'])
+		with t1:
+			pct = model.community_tokens_available_pct()
+			st.write(f'Community tokens available: :{"green" if pct else "red"}[{int(pct)}%]')
+			st.progress(pct/100)
+			st.write('Refresh in: ' + model.community_tokens_refresh_in())
+			st.write('You can sign up to OpenAI and/or create your API key [here](https://platform.openai.com/account/api-keys)')
+			ss['community_pct'] = pct
+			ss['debug']['community_pct'] = pct
+		with t2:
+			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
+	else:
+		st.write('## 1. Enter your OpenAI API key')
+		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
 	if ss['pdf_file']:
