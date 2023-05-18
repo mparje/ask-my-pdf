@@ -5,22 +5,17 @@
 TASK = {   
     'v6': (
         "Responde a la pregunta con la verdad basándote en el texto de abajo. "
-        "Incluya la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
-        "Después de la cita, escriba una explicación paso a paso. "
-        "Utilice viñetas."
+        "Incluye la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
+        "Después de la cita, escribe una explicación paso a paso. "
+        "Utiliza viñetas."
     ),
     'v5': (
-        "Responde a la pregunta con la verdad basándote en el texto que aparece a continuación. "
-        "Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, nombre de la sección y número de página). "
-        "Utilice elipsis en la cita para omitir partes irrelevantes de la misma. "
-        "Después de la cita, escribe (en un nuevo párrafo) una explicación paso a paso para asegurarte de que la respuesta es correcta."
-        "Utilice viñetas en líneas separadas."
-        "Después de la explicación comprueba si la respuesta es coherente con el contexto y no requiere conocimientos externos. "
-        "En una nueva línea escriba 'AUTOCOMPROBACIÓN CORRECTA' si la comprobación ha sido correcta y 'AUTOCOMPROBACIÓN FALLIDA' si ha fallado. "
+        "Resuelve el caso que se te plantea basándote en el texto que aparece a continuación. "
+        "Incluye al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, número de artículo y nú,ero de página). "
     ),
     'v4': (
         "Responde con la verdad a la pregunta basándote en el texto que aparece a continuación. " 
-        "Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, nombre de la sección y número de página). " 
+        "Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, número de artículo y número de página). " 
         "Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven."
     ),
     'v3': (
