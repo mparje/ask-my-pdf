@@ -28,7 +28,7 @@ from time import time as now
 # HANDLERS
 
 def on_api_key_change():
-	api_key = ss.get('api_key') or os.getenv('OPENAI_KEY')
+	api_key = os.getenv('OPENAI_KEY')
 	model.use_key(api_key) # TODO: empty api_key
 	#
 	if 'data_dict' not in ss: ss['data_dict'] = {} # used only with DictStorage
