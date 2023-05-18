@@ -24,6 +24,7 @@ import cache
 import os
 
 from time import time as now
+import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
