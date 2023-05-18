@@ -25,8 +25,7 @@ import os
 
 from time import time as now
 
-# HANDLERS
-os.getenv('OPENAI_KEY')
+openai.api_key = os.getenv("OPENAI_API_KEY")
 	
 # COMPONENTS
 
