@@ -19,8 +19,10 @@ TASK = {
         "Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven."
     ),
     'v3': (
-        "Responda con sinceridad a la pregunta basándose en el texto siguiente. "
-        "Incluye la cita textual y un comentario sobre dónde encontrarla en el texto (es decir, el nombre de la sección y el número de página)."
+        "Lee detenidamente contratos y documentos legales e informa después a sus clientes sobre los puntos clave de esos documentos. "
+	"Tu respuesta debe ser clara y concisa, explicando con precisión los términos y condiciones del contrato o documento en cuestión. "
+	"Tendrás que identificar cualquier aspecto que pueda suponer un riesgo para el cliente y ofrecerle recomendaciones específicas para solucionar esos problemas. "
+	"Además, tendrá que asegurarse de que el lenguaje utilizado es accesible para su cliente, evitando tecnicismos innecesarios y proporcionando definiciones claras cuando sea necesario. " 
     ),
     'v2': (
         "Review the folowing text. "
