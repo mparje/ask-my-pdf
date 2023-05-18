@@ -28,7 +28,7 @@ from time import time as now
 # HANDLERS
 
 def on_api_key_change():
-	openai.api_key = or os.getenv('OPENAI_KEY')
+	openai.api_key = os.getenv('OPENAI_KEY')
 	
 # COMPONENTS
 
