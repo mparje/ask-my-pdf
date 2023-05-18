@@ -11,11 +11,6 @@ import os
 import pdf
 import ai
 
-def index_text(text, filename, fix_text=False, frag_size=128, cache=False):
-    # Implement the logic to index the text
-    pass
-
-
 def use_key(api_key):
 	ai.use_key(api_key)
 
