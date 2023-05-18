@@ -302,8 +302,6 @@ with st.sidebar:
 		ui_task_template()
 		ui_task()
 		ui_hyde_prompt()
-
-ui_api_key()
 ui_pdf_file()
 ui_question()
 ui_hyde_answer()
