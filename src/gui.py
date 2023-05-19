@@ -170,12 +170,12 @@ def ui_fragments():
 def ui_model():
 	models = ['gpt-4','gpt-3.5-turbo','text-davinci-003','text-curie-001']
 	st.selectbox('main model', models, key='model', disabled=not ss.get('api_key'))
-	st.selectbox('embedding model', ['text-embedding-ada-002'], key='model_embed') # FOR FUTURE USE
+	st.selectbox('embedding model', ['text-embedding-ada-002, text-embedding-curie-002'], key='model_embed') # FOR FUTURE USE
 
-## def ui_hyde():
+def ui_hyde():
 	st.checkbox('use HyDE', value=True, key='use_hyde')
 
-## def ui_hyde_summary():
+def ui_hyde_summary():
 	st.checkbox('use summary in HyDE', value=True, key='use_hyde_summary')
 
 def ui_task_template():
