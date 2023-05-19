@@ -95,34 +95,34 @@ def debug_index():
 	d['frag_size'] = index['frag_size']
 	d['n_pages'] = len(index['pages'])
 	d['n_texts'] = len(index['texts'])
-	ddef ui_pdf_file():
-	st.write('## Suba o seleccione su PDF')
-	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
-	t1,t2 = st.tabs(['UPLOAD','SELECT'])
-	with t1:
-		st.file_uploader('pdf file', type='pdf', key='pdf_file', disabled=disabled, on_change=index_pdf_file, label_visibility="collapsed")
-		b_save()
-	with t2:
-		filenames = ['']
-		if ss.get('storage'):
-			filenames += ss['storage'].list()
-		def on_change():
-			name = ss['selected_file']
-			if name and ss.get('storage'):
-				with ss['spin_select_file']:
-					with st.spinner('loading index'):
-						t0 = now()
-						index = ss['storage'].get(name)
-						ss['debug']['storage_get_time'] = now()-t0
-				ss['filename'] = name # XXX
-				ss['index'] = index
-				debug_index()
-			else:
-				#ss['index'] = {}
-				pass
-		st.selectbox('select file', filenames, on_change=on_change, key='selected_file', label_visibility="collapsed", disabled=disabled)
-		b_delete()
-		ss['spin_select_file'] = st.empty()
+def ui_pdf_file():
+st.write('## Suba o seleccione su PDF')
+disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
+t1,t2 = st.tabs(['UPLOAD','SELECT'])
+with t1:
+	st.file_uploader('pdf file', type='pdf', key='pdf_file', disabled=disabled, on_change=index_pdf_file, label_visibility="collapsed")
+	b_save()
+with t2:
+	filenames = ['']
+	if ss.get('storage'):
+		filenames += ss['storage'].list()
+	def on_change():
+		name = ss['selected_file']
+		if name and ss.get('storage'):
+			with ss['spin_select_file']:
+				with st.spinner('loading index'):
+					t0 = now()
+					index = ss['storage'].get(name)
+					ss['debug']['storage_get_time'] = now()-t0
+			ss['filename'] = name # XXX
+			ss['index'] = index
+			debug_index()
+		else:
+			#ss['index'] = {}
+			pass
+	st.selectbox('select file', filenames, on_change=on_change, key='selected_file', label_visibility="collapsed", disabled=disabled)
+	b_delete()
+	ss['spin_select_file'] = st.empty()
 
 def ui_show_debug():
 	st.checkbox('show debug section', key='show_debug')
