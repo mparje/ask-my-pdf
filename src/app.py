@@ -166,7 +166,8 @@ def ui_hyde_prompt():
 def ui_question():
 	st.write('## Pregunte '+(f' a {ss["filename"]}' if ss.get('filename') else ''))
 	disabled = False
-	st.text_area('question', key='question', height=100
+	st.text_area('question', key='question', height=
+		    
 def ui_hyde_answer():
 	# TODO: enter or generate
 	pass
