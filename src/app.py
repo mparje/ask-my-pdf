@@ -168,7 +168,7 @@ def ui_question():
 	disabled = False
 	st.text_area('question', key='question', height=100
 		  
-	def ui_hyde_answer():
+def ui_hyde_answer():
 	# TODO: enter or generate
 	pass
 
