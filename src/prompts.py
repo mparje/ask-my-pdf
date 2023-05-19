@@ -3,32 +3,32 @@
 # TODO: Ignore OCR problems in the text below.
 
 TASK = {   
-    'v6': (
+    'Pregunta + cita': (
         "Responda a la pregunta con la verdad basándote en el texto de abajo. "
         "Incluya la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
         "Después de la cita, escriba una explicación paso a paso. "
         "Utilice viñetas."
     ),
-    'v5': (
+    'Caso': (
         "Resuelva el caso que se te plantea basándose en el texto que aparece a continuación. "
         "Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, número de artículo y número de página). "
     ),
-    'v4': (
+    'Artículo Nº': (
         "A la pregunta '¿Qué dice el artículo xx?' o 'Artículo xx', o 'art xx', responda citando textualmente al artículo en cuestión, basándose en el texto de abajo. " 
         "Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, número de artículo y número de página). " 
         "Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven."
     ),
-    'v3': (
+    'Puntos clave': (
         "Lea detenidamente contratos y documentos legales e informa después a sus clientes sobre los puntos clave de esos documentos. "
 	"Su respuesta debe ser clara y concisa, explicando con precisión los términos y condiciones del contrato o documento en cuestión. "
 	"Tendrá que identificar cualquier aspecto que pueda suponer un riesgo para el cliente y ofrecerle recomendaciones específicas para solucionar esos problemas. "
 	"Además, tendrá que asegurarse de que el lenguaje utilizado es accesible para su cliente, evitando tecnicismos innecesarios y proporcionando definiciones claras cuando sea necesario. " 
     ),
-    'v2': (
+    'Resumen': (
         "Resuma el texto de abajo."
 	"Use viñetas. "
      ),
-    'v1': (
+    'Libre': (
         "Haga lo que se le pide en relación al texto."
     ),
 }
