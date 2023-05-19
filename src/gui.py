@@ -172,10 +172,10 @@ def ui_model():
 	st.selectbox('main model', models, key='model', disabled=not ss.get('api_key'))
 	st.selectbox('embedding model', ['text-embedding-ada-002'], key='model_embed') # FOR FUTURE USE
 
-def ui_hyde():
+## def ui_hyde():
 	st.checkbox('use HyDE', value=True, key='use_hyde')
 
-def ui_hyde_summary():
+## def ui_hyde_summary():
 	st.checkbox('use summary in HyDE', value=True, key='use_hyde_summary')
 
 def ui_task_template():
