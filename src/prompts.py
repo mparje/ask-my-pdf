@@ -13,10 +13,9 @@ TASK = {
         "Resuelva el caso que se te plantea basándose en el texto que aparece a continuación. "
         "Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, número de artículo y número de página). "
     ),
-    'Artículo Nº': (
-        "A la pregunta '¿Qué dice el artículo xx?' o 'Artículo xx', o 'art xx', responda citando textualmente al artículo en cuestión, basándose en el texto de abajo. " 
-        "Incluir cita textual y un comentario de dónde encontrarla en el texto (es decir, número de artículo y número de página). " 
-        "Después de la cita escriba una explicación (en el nuevo párrafo) para un lector joven."
+    'Citas': (
+        "A la pregunta '¿cuáles son las citas más importantes?', responda eligiendo entr tres y doce citas del artículo o libro de abajo. " 
+        
     ),
     'Puntos clave': (
         "Lea detenidamente contratos y documentos legales e informa después a sus clientes sobre los puntos clave de esos documentos. "
@@ -29,7 +28,7 @@ TASK = {
 	"Use viñetas. "
      ),
     'Libre': (
-        "Haga lo que se le pide en relación al texto."
+        "Haga lo que se le pide en relación al texto que se le proporciona."
     ),
 }
 
