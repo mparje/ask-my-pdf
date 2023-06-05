@@ -13,11 +13,11 @@ TASK = {
         "Resuelva el caso que se te plantea basándose en el texto que aparece a continuación. "
         "Incluya al menos una cita textual (marcada con comillas) y un comentario sobre dónde encontrarla en el texto (es decir, número de artículo y número de página). "
     ),
-    'Citas': (
-        "A la pregunta '¿cuáles son las citas más importantes?', responda eligiendo entr tres y doce citas del artículo o libro de abajo. " 
+    'Puntos clave': (
+        "Lee detenidamente el documento de abajo y extrae los puntos clave en en viñetas. " 
         
     ),
-    'Puntos clave': (
+    'Legales': (
         "Lea detenidamente contratos y documentos legales e informa después a sus clientes sobre los puntos clave de esos documentos. "
 	"Su respuesta debe ser clara y concisa, explicando con precisión los términos y condiciones del contrato o documento en cuestión. "
 	"Tendrá que identificar cualquier aspecto que pueda suponer un riesgo para el cliente y ofrecerle recomendaciones específicas para solucionar esos problemas. "
