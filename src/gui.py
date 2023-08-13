@@ -60,7 +60,7 @@ def ui_spacer(n=2, line=False, next_n=0):
 
 def ui_info():
 	st.markdown(f"""
-	# LeybotGt
+	# Pregunte a su PDF
 	version {__version__}
 	
 	Herramienta de análisis de textos con inteligencia artificial.
