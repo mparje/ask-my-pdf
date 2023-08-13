@@ -1,5 +1,5 @@
 __version__ = "0.4.9.0"
-app_name = "LeybotGt"
+app_name = "Pregunte a su PDF"
 
 
 # BOILERPLATE
@@ -63,17 +63,15 @@ def ui_info():
 	# LeybotGt
 	version {__version__}
 	
-	La primera herramienta de inteligencia artficial para abogados de Guatemala.
+	Herramienta de análisis de textos con inteligencia artificial.
 	""")
 	ui_spacer(1)
 	st.write("Adaptado por Moris Polanco a partir del original de Maciej Obarski.", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		LeybotGt analiza leyes y documentos legales. 
-		Responde preguntas y resuelve casos basado el documento que se le proporciona.
-		Por ahora, usted debe ingresar el documento.
+		Analiza docuentos y libros en PDF. 
+		Responde preguntas sobre el documento que se le proporciona.
 		Solo se puede analizar un documento a la vez.
-		Para usar GPT-4, su clave de OpenAI debe estar autorizada para ello. 
 		Use las distintas instrucciones del menú avanzado de abajo.
 		""")
 	ui_spacer(1)
