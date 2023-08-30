@@ -68,16 +68,7 @@ def ui_info():
 	ui_spacer(1)
 	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
 	ui_spacer(1)
-	st.markdown("""
-		Thank you for your interest in my application.
-		Please be aware that this is only a Proof of Concept system
-		and may contain bugs or unfinished features.
-		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
-		on Twitter for news and updates.
-		""")
-	ui_spacer(1)
-	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
-
+	
 def ui_api_key():
 	if ss['community_user']:
 		st.write('## 1. Optional - enter your OpenAI API key')
