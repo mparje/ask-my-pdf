@@ -3,6 +3,10 @@
 # TODO: Ignore OCR problems in the text below.
 
 TASK = {   
+    
+    'Libre': (
+        "Haga lo que se le pide en relación al texto que se le proporciona."
+    ),
     'Pregunta + cita': (
         "Responda a la pregunta con la verdad basándote en el texto de abajo. "
         "Incluya la cita textual y un comentario de dónde encontrarla en el texto (número de página). "
@@ -25,10 +29,7 @@ TASK = {
         "Resuma el texto de abajo."
 	"Use viñetas. "
      ),
-    'Libre': (
-        "Haga lo que se le pide en relación al texto que se le proporciona."
-    ),
-}
+  }
 
 HYDE = "Escriba una respuesta de ejemplo a la siguiente pregunta. No escriba una respuesta genérica, asuma todo lo que no se sabe."
 
