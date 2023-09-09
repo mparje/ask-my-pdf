@@ -13,7 +13,7 @@ TASK = {
         "Formule preguntas que se le pueden hacer al documento; dependiendo de la extensión del documento, proponga pocas o muchas preguntas" 
     ),
     'Puntos clave': (
-        "Lee detenidamente el documento de abajo y extrae los puntos clave en en viñetas. " 
+        "Lee detenidamente el documento de abajo y extrae los puntos clave en viñetas. " 
     ),
     'Legales': (
         "Lea detenidamente contratos y documentos legales e informa después a sus clientes sobre los puntos clave de esos documentos. "
