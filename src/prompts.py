@@ -26,7 +26,7 @@ TASK = {
 	"Además, tendrá que asegurarse de que el lenguaje utilizado es accesible para su cliente, evitando tecnicismos innecesarios y proporcionando definiciones claras cuando sea necesario. " 
     ),
     'Resumen': (
-        "Resuma el texto de abajo."
+        "Resuma en español el texto de abajo. "
 	"Use viñetas. "
      ),
   }
